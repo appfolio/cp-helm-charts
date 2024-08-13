@@ -9,6 +9,5 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  jmx-kafka-connect-prometheus.yml: |+
-    {{ .Values.jmxConfigMap }}
+  jmx-kafka-connect-prometheus.yml: {{ toYaml .Values.jmxConfigMap.jmxKafkaConnectPrometheusYml | indent 2 }}
 {{- end }}

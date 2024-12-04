@@ -12,6 +12,11 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0%
+    type: RollingUpdate
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -71,6 +76,20 @@ spec:
             - containerPort: {{ .Values.jmx.port }}
               name: jmx
             {{- end }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.servicePort }}
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            failureThreshold: 2
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.servicePort }}
+            initialDelaySeconds: 15
+            failureThreshold: 2
+            periodSeconds: 45
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           env:

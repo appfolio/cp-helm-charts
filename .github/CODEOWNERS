@@ -1,2 +1,2 @@
-# See go/codeowners - automatically generated for confluentinc/cp-helm-charts:
-*	@confluentinc/cluster-management
+# Default owners for all files in this repo
+* @appfolio/platform-data-engineering

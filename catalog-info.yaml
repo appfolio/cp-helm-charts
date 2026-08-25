@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cp-helm-charts
+  description: "Fork of confluentinc/cp-helm-charts: Helm charts for deploying Confluent Platform services on Kubernetes"
+spec:
+  type: provisioner
+  lifecycle: stable
+  owner: CODEOWNERS
